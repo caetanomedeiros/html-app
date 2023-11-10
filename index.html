@@ -1,22 +1,20 @@
-<!DOCTYPE html> 
-<html> 
-  
-<body> 
-    <h1>Show File-select Fields</h1> 
-  
-    <h3> 
-        Show a file-select field which allows 
-        only one file to be chosen: 
-    </h3> 
-  
-    <form action="/action_page.php" 
-        enctype="multipart/form-data"> 
-          
-        <label for="myfile">Select a file:</label> 
-        <input type="file" id="myfile" name="myfile" /> 
-        <br /><br /> 
-        <input type="submit" /> 
-    </form> 
-</body> 
-  
-</html> 
+<html>
+<body>
+<?php
+
+/* Get the name of the file uploaded to Apache */
+$filename = $_FILES['file']['name'];
+
+/* Prepare to save the file upload to the upload folder */
+$location = "/tmp/".$filename;
+
+/* Permanently save the file upload to the upload folder */
+if ( move_uploaded_file($_FILES['file']['tmp_name'], $location) ) { 
+  echo '<p>The HTML5 and php file upload was a success!</p>'; 
+} else { 
+  echo '<p>The php and HTML5 file upload failed.</p>'; 
+}
+
+?>
+</body>
+</html>
